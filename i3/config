@@ -26,10 +26,7 @@ client.urgent		$urgent-bg-color        $urgent-bg-color 	$text-color 		#00ff00
 
 #BARRA
 bar {
-    status_command i3blocks -c ~/.config/i3/i3blocks.conf
-
-#	i3bar_command   ~/.config/i3/bar/bar.sh | lemonbar -p
-
+    
         tray_output VGA-0
         colors {
                 background $bg-color
@@ -133,8 +130,10 @@ bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioPause exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
-bindsym $mod+Shift+f exec firefox-trunk
-bindsym Print exec screenshot
+bindsym $mod+Shift+f exec firefox
+#Bind print screen
+bindsym Print exec xfce4-screenshooter
+
 # Recarregar arquivo de configuração do i3
 bindsym $mod+Shift+c reload
 # Recarregar i3  (preserves your layout/session, can be used to upgrade i3)
@@ -143,9 +142,8 @@ bindsym $mod+Shift+r restart
 # Sair do i3 (logs you out of your X session)
 # #bindsym $mod+Shift+e exec /home/redmaster/.config/i3/scripts/exit_menu
 
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
-# Redimencionar janela (you can also use the mouse for that)
+# Redimensionar janela (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
           # Pressing left will shrink the window’s width.
@@ -171,11 +169,13 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # Inicia o ROFI (a program launcher)
-bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 50 -padding 0 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color"
+bindsym $mod+d exec rofi -show run -hide-scrollbar -lines 3 -eh 1 -width 40 -location 8 -xoffset 170 -yoffset 70 -padding 30 -disable-history -font "RobotoMono 18"
+
+#rofi powermenu
+bindsym $mod+Shift+e exec ~/Tools/bin/rofi-close-i3.sh
 
 #Bloqueio de Tela
 bindsym $mod+shift+x exec ./locker.sh
-
 
 
 #ÁREAS DE TRABALHO
@@ -196,7 +196,7 @@ for_window [window_role="pop-up"] floating enable,move absolute center
 
 #Aplicativos pré-definidos
 # #assign [class="Gnome-terminal"] $workspace1
-assign [class="Nightly"] $workspace2
+assign [class="Firefox"] $workspace2
 assign [class="Steam"] $workspace3
 assign [class="Spotify"] $workspace10
 
@@ -221,12 +221,16 @@ workspace $workspace10 output VGA-0
 #workspace $workspace10 output HDMI-0
 
 
+
 #INICIO AUTOMÁTICO
-exec_always feh --bg-scale /home/redmaster/Imagens/wallhaven-593645.jpg
+exec --no-startup-id ./pop1.sh Hey! You should see your to-do list! | skroll -l
+exec --no-startup-id ~/Tools/bin/bar/bar.sh | lemonbar -p 
+exec feh --bg-scale ~/Downloads/wall.png
 exec --no-startup-id compton -f
 exec killall -q notify-osd
 exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
 exec_always --no-startup-id xrandr --output VGA-0 --primary --mode 1366x768 --pos 0x0 --rotate normal --output DVI-I-1 --off --output DVI-I-0 --off --output HDMI-0 --mode 1366x768 --pos 1366x0 --rotate normal
+
 
 
 
