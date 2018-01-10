@@ -1,0 +1,233 @@
+#Tema 1 - by ReD
+# 
+# Teclas de atalho configuradas
+
+#Tecla de Atalho - alt
+set $mod Mod1
+
+#Font do sistema
+font pango:System San Francisco Display Regular, Roboto-Regular 10
+
+
+#LAYOUT
+#Cores
+set $bg-color            #2f343f
+set $inactive-bg-color   #2f343f
+set $text-color          #f3f4f5
+set $inactive-text-color #676E7D
+set $urgent-bg-color     #E53935
+
+# window colors
+#				border                  background        		text				indicator
+client.focused		$bg-color                $bg-color          		$text-color          	#00ff00
+client.unfocused	$inactive-bg-color      $inactive-bg-color 	$inactive-text-color 	#00ff00
+client.focused_inactive	$inactive-bg-color      $inactive-bg-color $inactive-text-color 	#00ff00
+client.urgent		$urgent-bg-color        $urgent-bg-color 	$text-color 		#00ff00
+
+#BARRA
+bar {
+    status_command i3blocks -c ~/.config/i3/i3blocks.conf
+
+#	i3bar_command   ~/.config/i3/bar/bar.sh | lemonbar -p
+
+        tray_output VGA-0
+        colors {
+                background $bg-color
+                separator #757575
+                #                   border             background         text
+                focused_workspace  $bg-color          $bg-color          $text-color
+                inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
+                urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
+                }
+
+}
+ 
+
+hide_edge_borders both #ocultar bordas
+
+#Mouse+$mod para mover janelas flutuantes
+floating_modifier $mod
+
+#ATALHOS DE TECLADO
+bindsym $mod+Return exec i3-sensible-terminal #Iniciar terminal
+#Fechar Janela
+bindsym $mod+Shift+q kill 
+
+#Atalho - áreas de trabalho
+# Mudar área de trabalho
+bindsym $mod+1 workspace $workspace1
+bindsym $mod+2 workspace $workspace2
+bindsym $mod+3 workspace $workspace3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace $workspace10
+
+# Mudar o container focado para outra área de trabalho
+bindsym $mod+Shift+1 move container to workspace $workspace1
+bindsym $mod+Shift+2 move container to workspace $workspace2
+bindsym $mod+Shift+3 move container to workspace $workspace3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace $workspace10
+
+# Mudar foco de janela
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+ccedilla focus right
+
+# Alternativamente, você pode usar as setas do teclado
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Mover janela focada
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+ccedilla move right
+
+# Alternativamente, você pode usar as setas do teclado
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Dividir janela na horizontal
+bindsym $mod+h split h
+
+# Dividir janela na vertical
+bindsym $mod+v split v
+
+# Entrar em modo tela cheia para janela em foco
+bindsym $mod+f fullscreen toggle
+
+# Mudar o layout do container (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed	
+bindsym $mod+e layout toggle split
+
+# Alternar entre tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# Mudar o foco entre tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# Focar no container adjascente
+bindsym $mod+a focus parent
+
+# Controle de Volume
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 2 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 2 -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 2 toggle # mute sound
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioPause exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+bindsym $mod+Shift+f exec firefox-trunk
+bindsym Print exec screenshot
+# Recarregar arquivo de configuração do i3
+bindsym $mod+Shift+c reload
+# Recarregar i3  (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+# Sair do i3 (logs you out of your X session)
+# #bindsym $mod+Shift+e exec /home/redmaster/.config/i3/scripts/exit_menu
+
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# Redimencionar janela (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+          # Pressing left will shrink the window’s width.
+          # Pressing right will grow the window’s width.
+          # Pressing up will shrink the window’s height.
+          # Pressing down will grow the window’s height.
+          bindsym j resize shrink width 10 px or 10 ppt
+          bindsym k resize grow height 10 px or 10 ppt
+          bindsym l resize shrink height 10 px or 10 ppt
+          bindsym ccedilla resize grow width 10 px or 10 ppt
+
+          # same bindings, but for the arrow keys
+          bindsym Left resize shrink width 10 px or 10 ppt
+          bindsym Down resize grow height 10 px or 10 ppt
+          bindsym Up resize shrink height 10 px or 10 ppt
+          bindsym Right resize grow width 10 px or 10 ppt
+   
+          # back to normal: Enter or Escape
+          bindsym Return mode "default"
+          bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# Inicia o ROFI (a program launcher)
+bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 50 -padding 0 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color"
+
+#Bloqueio de Tela
+bindsym $mod+shift+x exec ./locker.sh
+
+
+
+#ÁREAS DE TRABALHO
+
+set $workspace1 "1:"
+set $workspace2 "2:"
+set $workspace3 "3:"
+set $workspace10 "10:Music"
+
+# Janelas Flutuantes
+for_window [class="Steam"] floating enable
+for_window [class="Pavucontrol"] floating enable
+for_window [class="Nautilus"] floating enable
+for_window [class="dota2"] floating enable
+for_window [class="krita"] floating enable
+
+for_window [window_role="pop-up"] floating enable,move absolute center
+
+#Aplicativos pré-definidos
+# #assign [class="Gnome-terminal"] $workspace1
+assign [class="Nightly"] $workspace2
+assign [class="Steam"] $workspace3
+assign [class="Spotify"] $workspace10
+
+#workspace monitors VGA-0
+workspace $workspace1 output VGA-0
+workspace $workspace2 output VGA-0
+workspace $workspace3 output VGA-0
+#workspace $workspace4 output DVI-I-2
+#workspace $workspace5 output DVI-I-2
+#workspace $workspace6 output DVI-I-2
+#workspace $workspace9 output DVI-I-2
+workspace $workspace10 output VGA-0
+
+#HDM1-0
+#workspace $workspace1 output HDMI-0
+#workspace $workspace2 output HDMI-0
+#workspace $workspace3 output HDMI-0
+#workspace $workspace4 output DVI-I-2
+##workspace $workspace5 output DVI-I-2
+##workspace $workspace6 output DVI-I-2
+##workspace $workspace9 output DVI-I-2
+#workspace $workspace10 output HDMI-0
+
+
+#INICIO AUTOMÁTICO
+exec_always feh --bg-scale /home/redmaster/Imagens/wallhaven-593645.jpg
+exec --no-startup-id compton -f
+exec killall -q notify-osd
+exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
+exec_always --no-startup-id xrandr --output VGA-0 --primary --mode 1366x768 --pos 0x0 --rotate normal --output DVI-I-1 --off --output DVI-I-0 --off --output HDMI-0 --mode 1366x768 --pos 1366x0 --rotate normal
+
+
+
+
