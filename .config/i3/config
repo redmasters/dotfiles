@@ -110,7 +110,7 @@ for_window [class="^Spotify$"] floating disable
 for_window [class="System-config-printer.py"] floating enable
 for_window [class="Unetbootin.elf"] floating enable
 for_window [class="Usb-creator-gtk"] floating enable
-for_window [class="^Vlc$"] floating disable
+for_window [class="^vlc$"] floating enable
 for_window [class="Wine"] floating disable
 for_window [class="Xfburn"] floating disable
 for_window [class="Xfce4-appfinder"] floating enable
@@ -341,15 +341,18 @@ bindsym $mod+r mode "resize"
 
 ######################### BOOT UP ############################################
 #Startup
-exec --no-startup-id feh --bg-fill -randomize /home/redmaster/Imagens/Papéis\ de\ parede/*
+exec --no-startup-id feh --bg-fill -randomize ~/Imagens/wall/*
 
-bindsym mod1+F3 exec --no-startup-id xfce4-appfinder
+#bindsym mod1+F3 exec --no-startup-id xfce4-appfinder
 
 #Polybar
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 
+exec setxkbmap br
 
 
+####PrintScrenn###
+bindsym --release Print exec --no-startup-id deepin-screenshot
 
 
 ############################ BARRA ###########################################
