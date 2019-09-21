@@ -10,7 +10,7 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
 fi
 
 #conf de video
-exec ~/.screenlayout/01.sh &
+#exec ~/.screenlayout/01.sh &
 
 #bar 
 exec ~/.config/polybar/launch.sh &
@@ -25,7 +25,7 @@ setxkbmap br &
 xsetroot -cursor_name left_ptr &
 
 #urvt
-xrdb -load ~/.Xresources &
+xrdb -load ~/.Xdefaults &
 
 #I3wm
 exec i3

@@ -1,0 +1,40 @@
+Xresources
+
+!- Font Render
+Xft.dpi: 96
+Xft.antialiasing: false
+Xft.rgba: rgb
+Xft.hinting: true
+Xft.lcdfilter: lcddefalut
+URxvt*.cursorColor: #b30000
+
+
+URxvt*background:#222222
+URxvt*foreground:#e8e9ca
+
+URxvt*color0:    #222222
+URxvt*color1:    #8b3e2f
+URxvt*color2:    #526f33
+URxvt*color3:    #665847
+URxvt*color4:    #4a708b
+URxvt*color5:    #7a378b
+URxvt*color6:    #528b8b
+URxvt*color7:    #999999
+
+URxvt*color8:    #4c4c4c
+URxvt*color9:    #d75f00
+URxvt*color10:   #cee318
+URxvt*color11:   #eee685
+URxvt*color12:   #9ac0cd
+URxvt*color13:   #9f79ee
+URxvt*color14:   #79cdcd
+URxvt*color15:   #e8e9ca
+
+URxvt*ScrollBar: false
+URxvt*scrollstyle: plain
+URxvt*bordeless: true
+
+!- Copy/paste
+URxvt*iso14755: false
+URxvt*keysym.Shift-Alt-C: perl:clipboard:copy
+URxvt*keysym.Shift-Alt-V: perl:clipboard:paste
