@@ -18,7 +18,7 @@ local awful = require("awful")
 local screen_width = awful.screen.focused().geometry.width
 local screen_height = awful.screen.focused().geometry.height
 
-theme.font          = "roboto 12"
+theme.font          = "roboto condensed 12"
 
 --Colors  {
 
@@ -68,10 +68,10 @@ theme.fg_minimize   = theme.xcolor8
 --}
 
 
-theme.bg_normal     = "#0d0101"
-theme.bg_focus      = "#830517"
-theme.bg_urgent     = "#ff0000"
-theme.bg_minimize   = "#444444"
+theme.bg_normal     = "#27272f"
+theme.bg_focus      = "#444444"
+theme.bg_urgent     = "#1e1e1e"
+theme.bg_minimize   = "#373740"
 theme.bg_systray    = theme.bg_normal
 
 theme.fg_normal     = "#aaaaaa"
