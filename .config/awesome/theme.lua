@@ -2,19 +2,74 @@
 -- Default awesome theme --
 ---------------------------
 
+local theme_name = "red"
 local theme_assets = require("beautiful.theme_assets")
 local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
-
+local xrdb = xresources.get_current_theme()
 local gfs = require("gears.filesystem")
 local themes_path = gfs.get_themes_dir()
 
 local theme = {}
 
-theme.font          = "sans 8"
 
-theme.bg_normal     = "#222222"
-theme.bg_focus      = "#535d6c"
+-- This is used to make it easier to align the panels in specific monitor positions
+local awful = require("awful")
+local screen_width = awful.screen.focused().geometry.width
+local screen_height = awful.screen.focused().geometry.height
+
+theme.font          = "roboto 12"
+
+--Colors  {
+
+-- Get colors from .Xresources and set fallback colors
+theme.xbackground = xrdb.background or "#1D1F28"
+theme.xforeground = xrdb.foreground or "#FDFDFD"
+theme.xcolor0 = xrdb.color0 or "#282A36"
+theme.xcolor1 = xrdb.color1 or "#F37F97"
+theme.xcolor2 = xrdb.color2 or "#5ADECD"
+theme.xcolor3 = xrdb.color3 or "#F2A272"
+theme.xcolor4 = xrdb.color4 or "#8897F4"
+theme.xcolor5 = xrdb.color5 or "#C574DD"
+theme.xcolor6 = xrdb.color6 or "#79E6F3"
+theme.xcolor7 = xrdb.color7 or "#FDFDFD"
+theme.xcolor8 = xrdb.color8 or "#414458"
+theme.xcolor9 = xrdb.color9 or "#FF4971"
+theme.xcolor10 = xrdb.color10 or  "#18E3C8"
+theme.xcolor11 = xrdb.color11 or  "#FF8037"
+theme.xcolor12 = xrdb.color12 or  "#556FFF"
+theme.xcolor13 = xrdb.color13 or  "#B043D1"
+theme.xcolor14 = xrdb.color14 or  "#3FDCEE"
+theme.xcolor15 = xrdb.color15 or  "#BEBEC1"
+
+
+-- Set some colors that are used frequently as local variables
+local accent_color = theme.xcolor14
+local focused_color = theme.xcolor14
+local unfocused_color = theme.xcolor7
+local urgent_color = theme.xcolor9
+
+
+-- This is how to get other .Xresources values (beyond colors 0-15, or custom variables)
+-- local cool_color = awesome.xrdb_get_value("", "color16")
+
+theme.bg_dark       = theme.xbackground
+theme.bg_normal     = theme.xbackground
+theme.bg_focus      = theme.xbackground
+theme.bg_urgent     = theme.xbackground
+theme.bg_minimize   = theme.xcolor8
+theme.bg_systray    = theme.xbackground
+
+theme.fg_normal     = theme.xcolor7
+theme.fg_focus      = focused_color
+theme.fg_urgent     = urgent_color
+theme.fg_minimize   = theme.xcolor8
+
+--}
+
+
+theme.bg_normal     = "#0d0101"
+theme.bg_focus      = "#830517"
 theme.bg_urgent     = "#ff0000"
 theme.bg_minimize   = "#444444"
 theme.bg_systray    = theme.bg_normal
@@ -24,8 +79,9 @@ theme.fg_focus      = "#ffffff"
 theme.fg_urgent     = "#ffffff"
 theme.fg_minimize   = "#ffffff"
 
-theme.useless_gap   = dpi(0)
+theme.useless_gap   = dpi(3)
 theme.border_width  = dpi(1)
+theme.screen_margin = dpi(3)
 theme.border_normal = "#000000"
 theme.border_focus  = "#535d6c"
 theme.border_marked = "#91231c"
@@ -52,6 +108,11 @@ theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
     taglist_square_size, theme.fg_normal
 )
 
+--Wibar
+theme.wibar_height = dpi(45)
+--theme.wibar.fg = theme.xcolor7
+--theme.wibar.bg = theme.xcolor0 .. "00"
+
 -- Variables set for theming notifications:
 -- notification_font
 -- notification_[bg|fg]
@@ -62,7 +123,7 @@ theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
 -- menu_[bg|fg]_[normal|focus]
 -- menu_[border_color|border_width]
 theme.menu_submenu_icon = themes_path.."default/submenu.png"
-theme.menu_height = dpi(15)
+theme.menu_height = dpi(45)
 theme.menu_width  = dpi(100)
 
 -- You can add as many variables as
