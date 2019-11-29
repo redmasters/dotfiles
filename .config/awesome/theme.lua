@@ -18,7 +18,9 @@ local awful = require("awful")
 local screen_width = awful.screen.focused().geometry.width
 local screen_height = awful.screen.focused().geometry.height
 
-theme.font          = "Roboto Condensed Regular 12"
+theme.font = "Roboto Condensed Regular 10"
+theme.tasklist_font = "Roboto 00"
+theme.titlebar_font = "Roboto 5"
 
 --Colors  {
 
@@ -68,16 +70,16 @@ theme.fg_minimize   = theme.xcolor8
 --}
 
 
-theme.bg_normal     = "#27272f"
-theme.bg_focus      = "#444444"
-theme.bg_urgent     = "#1e1e1e"
-theme.bg_minimize   = "#373740"
-theme.bg_systray    = theme.bg_normal
+--theme.bg_normal     = "#27272f"
+--theme.bg_focus      = "#444444"
+--theme.bg_urgent     = "#1e1e1e"
+--theme.bg_minimize   = "#373740"
+--theme.bg_systray    = theme.bg_normal
 
-theme.fg_normal     = "#aaaaaa"
-theme.fg_focus      = "#ffffff"
-theme.fg_urgent     = "#ffffff"
-theme.fg_minimize   = "#ffffff"
+--theme.fg_normal     = "#aaaaaa"
+--theme.fg_focus      = "#ffffff"
+--theme.fg_urgent     = "#ffffff"
+--theme.fg_minimize   = "#ffffff"
 
 theme.useless_gap   = dpi(3)
 theme.border_width  = dpi(1)
