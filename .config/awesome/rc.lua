@@ -192,9 +192,33 @@ awful.screen.connect_for_each_screen(function(s)
     s.mytasklist = awful.widget.tasklist {
         screen  = s,
         filter  = awful.widget.tasklist.filter.currenttags,
-        buttons = tasklist_buttons
+        buttons = tasklist_buttons,
+        style   = {
+            shape = gears.shape.rounded_rect, 
+      },
+      layout = {
+        spacing = 5,
+        forced_num_rows = 2,
+        layout = wibox.layout.grid.vertical
+      },
     }
+--Testes {
 
+
+    s.mytext = wibox.widget.textbox()
+    s.mytext.text = "Hello World!"
+    s.mybar = awful.wibar({position = "right", screen = s})
+      s.mybar:setup {
+        layout = wibox.layout.align.vertical,
+        {
+          layout = wibox.layout.fixed.vertical,
+          --s.mytext,
+          s.mytasklist,
+                    
+
+        }
+      }
+--}
     -- Create the wibox
     s.mywibox = awful.wibar({ position = "bottom", screen = s })
 

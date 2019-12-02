@@ -111,7 +111,7 @@ theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
 )
 
 --Wibar
-theme.wibar_height = dpi(45)
+theme.wibar_height = dpi(35)
 --theme.wibar.fg = theme.xcolor7
 --theme.wibar.bg = theme.xcolor0 .. "00"
 
