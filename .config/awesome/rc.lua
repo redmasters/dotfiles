@@ -198,25 +198,40 @@ awful.screen.connect_for_each_screen(function(s)
       },
       layout = {
         spacing = 5,
-        forced_num_rows = 2,
-        layout = wibox.layout.grid.vertical
+        --forced_num_columns = 2,
+        layout = wibox.layout.grid.horizontal
       },
+      widget_template = {
+            {
+                {
+                    id     = 'clienticon',
+                    widget = awful.widget.clienticon,
+                },
+                margins = 0,
+                widget  = wibox.container.margin,
+            },
+            id              = 'background_role',
+            --forced_width    = 48,
+            --forced_height   = 48,
+            widget          = wibox.container.background,
+            create_callback = function(self, c, index, objects) --luacheck: no unused
+                self:get_children_by_id('clienticon')[1].client = c
+            end,
+        },
+
     }
 --Testes {
-
-
     s.mytext = wibox.widget.textbox()
     s.mytext.text = "Hello World!"
-    s.mybar = awful.wibar({position = "right", screen = s})
+    s.mybar = awful.wibar({position = "top", screen = s})
       s.mybar:setup {
-        layout = wibox.layout.align.vertical,
+        layout = wibox.layout.align.horizontal,
         {
-          layout = wibox.layout.fixed.vertical,
+          layout = wibox.layout.fixed.horizontal,
           --s.mytext,
-          s.mytasklist,
-                    
-
-        }
+          s.mytasklist,                 
+        },
+        s.mytaglist,
       }
 --}
     -- Create the wibox
