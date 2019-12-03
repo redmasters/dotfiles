@@ -18,6 +18,18 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 
+
+rofi_script = [[
+bash -c "
+    rofi -modi run,drun -show drun -line-padding 4 \
+         -columns 1 -padding 20 -hide-scrollbar    \
+         -show-icons -icon-theme 'Papirus-Dark'    \
+         -lines 10 -width 31"
+]]
+
+
+
+
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
