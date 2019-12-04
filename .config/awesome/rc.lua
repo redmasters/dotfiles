@@ -183,6 +183,7 @@ awful.screen.connect_for_each_screen(function(s)
     -- Each screen has its own tag table.
     awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
 
+
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
     -- Create an imagebox widget which will contain an icon indicating which layout we're using.
@@ -195,7 +196,7 @@ awful.screen.connect_for_each_screen(function(s)
                            awful.button({ }, 5, function () awful.layout.inc(-1) end)))
     -- Create a taglist widget
     s.mytaglist = awful.widget.taglist {
-        align   = "center",
+        position   = "top_middle",
         screen  = s,
         filter  = awful.widget.taglist.filter.all,
         buttons = taglist_buttons,
@@ -242,14 +243,17 @@ awful.screen.connect_for_each_screen(function(s)
     s.mybar = awful.wibar({position = "top", screen = s})
       s.mybar:setup {
         layout = wibox.layout.align.horizontal,
+        expand = "none", --Centraliza a taglist
         {
           layout = wibox.layout.fixed.horizontal,
           --s.mytext,
           s.mytasklist,                 
         },
-
+        { ---Meio 
+          layout = wibox.layout.flex.horizontal,
+          --max_widget_size= 1500,
         s.mytaglist,
-
+        }, 
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             mykeyboardlayout,
