@@ -195,9 +195,11 @@ awful.screen.connect_for_each_screen(function(s)
                            awful.button({ }, 5, function () awful.layout.inc(-1) end)))
     -- Create a taglist widget
     s.mytaglist = awful.widget.taglist {
+        align   = "center",
         screen  = s,
         filter  = awful.widget.taglist.filter.all,
-        buttons = taglist_buttons
+        buttons = taglist_buttons,
+               
     }
 
     -- Create a tasklist widget
@@ -233,6 +235,8 @@ awful.screen.connect_for_each_screen(function(s)
 
     }
 --Testes {
+
+  
     s.mytext = wibox.widget.textbox()
     s.mytext.text = "Hello World!"
     s.mybar = awful.wibar({position = "top", screen = s})
@@ -243,7 +247,9 @@ awful.screen.connect_for_each_screen(function(s)
           --s.mytext,
           s.mytasklist,                 
         },
+
         s.mytaglist,
+
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             mykeyboardlayout,
