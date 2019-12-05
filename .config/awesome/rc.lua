@@ -21,12 +21,28 @@ require("awful.hotkeys_popup.keys")
 
 rofi_script = [[
 bash -c "
-    rofi -modi run,drun -show drun -line-padding 4 \
-         -columns 1 -padding 20 -hide-scrollbar    \
+    rofi -modi drun, run -show drun -line-padding 4 \
+         -columns 4 -padding 20 -hide-scrollbar    \
          -show-icons -icon-theme 'Papirus-Dark'    \
          -lines 10 -width 31"
 ]]
 
+
+--Autorun programas
+autorun = true
+autorunApps =
+{
+   "xfce4-clipman",
+   "feh --bg-fill --randomize ~/Imagens/wall/*",
+   --"program3",
+   --"program4",
+   --"program5",
+}
+if autorun then
+   for app = 1, #autorunApps do
+       awful.util.spawn(autorunApps[app])
+   end
+end
 
 
 
@@ -181,7 +197,7 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
+    awful.tag({ "", "", "", "", "", "", "", "", "" }, s, awful.layout.layouts[1])
 
 
     -- Create a promptbox for each screen
