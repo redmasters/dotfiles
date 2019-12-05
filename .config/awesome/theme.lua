@@ -2,7 +2,6 @@
 -- Default awesome theme --
 ---------------------------
 
-local theme_name = "red"
 local theme_assets = require("beautiful.theme_assets")
 local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
@@ -11,6 +10,7 @@ local gfs = require("gears.filesystem")
 local themes_path = gfs.get_themes_dir()
 
 local theme = {}
+local theme_name = "red"
 
 
 -- This is used to make it easier to align the panels in specific monitor positions
@@ -19,8 +19,9 @@ local screen_width = awful.screen.focused().geometry.width
 local screen_height = awful.screen.focused().geometry.height
 
 theme.font = "Roboto Condensed Regular 10"
-theme.tasklist_font = "Roboto 00"
+--theme.tasklist_font = "Roboto 00"
 theme.titlebar_font = "Roboto 5"
+theme.taglist_font  = "Roboto Bold 6"
 
 --Colors  {
 
@@ -59,7 +60,7 @@ theme.bg_dark       = theme.xbackground
 theme.bg_normal     = theme.xbackground
 theme.bg_focus      = theme.xbackground
 theme.bg_urgent     = theme.xbackground
-theme.bg_minimize   = theme.xcolor8
+theme.bg_minimize   = theme.xbackground
 theme.bg_systray    = theme.xbackground
 
 theme.fg_normal     = theme.xcolor7
@@ -111,7 +112,7 @@ theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
 )
 
 --Wibar
-theme.wibar_height = dpi(35)
+theme.wibar_height = dpi(45)
 --theme.wibar.fg = theme.xcolor7
 --theme.wibar.bg = theme.xcolor0 .. "00"
 
@@ -134,7 +135,7 @@ theme.menu_width  = dpi(100)
 --theme.bg_widget = "#cc0000"
 
 -- Define the image to load
-theme.titlebar_close_button_normal = themes_path.."default/titlebar/close_normal.png"
+theme.titlebar_close_button_normal = themes_path.."red/close_normal.png"
 theme.titlebar_close_button_focus  = themes_path.."default/titlebar/close_focus.png"
 
 theme.titlebar_minimize_button_normal = themes_path.."default/titlebar/minimize_normal.png"
@@ -160,7 +161,8 @@ theme.titlebar_maximized_button_focus_inactive  = themes_path.."default/titlebar
 theme.titlebar_maximized_button_normal_active = themes_path.."default/titlebar/maximized_normal_active.png"
 theme.titlebar_maximized_button_focus_active  = themes_path.."default/titlebar/maximized_focus_active.png"
 
-theme.wallpaper = themes_path.."default/background.png"
+theme.wallpaper = themes_path.."red/background.png"
+
 
 -- You can use your own layout icons like this:
 theme.layout_fairh = themes_path.."default/layouts/fairhw.png"
