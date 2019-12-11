@@ -34,7 +34,7 @@ autorunApps =
 {
    "xfce4-clipman",
    "feh --bg-fill --randomize ~/Imagens/wall/*",
-   --"program3",
+   "setxkbmap br",
    --"program4",
    --"program5",
 }
@@ -177,6 +177,8 @@ local tasklist_buttons = gears.table.join(
                                               awful.client.focus.byidx(-1)
                                           end))
 
+-- Wallpaper
+-- ===================================================================
 local function set_wallpaper(s)
     -- Wallpaper
     if beautiful.wallpaper then
@@ -185,7 +187,16 @@ local function set_wallpaper(s)
         if type(wallpaper) == "function" then
             wallpaper = wallpaper(s)
         end
-        gears.wallpaper.maximized(wallpaper, s, true)
+
+        -- Method 1: Built in wallpaper function
+        -- gears.wallpaper.fit(wallpaper, s, true)
+        -- gears.wallpaper.maximized(wallpaper, s, true)
+
+        -- Method 2: Set theme's wallpaper with feh
+        --awful.spawn.with_shell("feh --bg-fill " .. wallpaper)
+
+        -- Method 3: Set last wallpaper with feh
+        awful.spawn.with_shell(os.getenv("HOME") .. "/.fehbg")
     end
 end
 
@@ -259,6 +270,7 @@ awful.screen.connect_for_each_screen(function(s)
     s.mybar = awful.wibar({position = "top", screen = s})
       s.mybar:setup {
         layout = wibox.layout.align.horizontal,
+        
         expand = "none", --Centraliza a taglist
         {
           layout = wibox.layout.fixed.horizontal,
@@ -394,6 +406,8 @@ globalkeys = gears.table.join(
               {description = "show the menubar", group = "launcher"})
 )
 
+  
+  
 clientkeys = gears.table.join(
     awful.key({ modkey,           }, "f",
         function (c)

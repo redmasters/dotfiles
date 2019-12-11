@@ -88,6 +88,7 @@ theme.screen_margin = dpi(3)
 theme.border_normal = "#000000"
 theme.border_focus  = "#535d6c"
 theme.border_marked = "#91231c"
+tasklist_bg_focus	= theme.xcolor8
 
 -- There are other variable sets
 -- overriding the default one when
@@ -112,7 +113,7 @@ theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
 )
 
 --Wibar
-theme.wibar_height = dpi(45)
+theme.wibar_height = dpi(32)
 --theme.wibar.fg = theme.xcolor7
 --theme.wibar.bg = theme.xcolor0 .. "00"
 
