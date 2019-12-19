@@ -26,24 +26,24 @@ theme.taglist_font  = "Roboto Bold 6"
 --Colors  {
 
 -- Get colors from .Xresources and set fallback colors
-theme.xbackground = xrdb.background or "#1D1F28"
-theme.xforeground = xrdb.foreground or "#FDFDFD"
-theme.xcolor0 = xrdb.color0 or "#282A36"
-theme.xcolor1 = xrdb.color1 or "#F37F97"
-theme.xcolor2 = xrdb.color2 or "#5ADECD"
-theme.xcolor3 = xrdb.color3 or "#F2A272"
-theme.xcolor4 = xrdb.color4 or "#8897F4"
-theme.xcolor5 = xrdb.color5 or "#C574DD"
-theme.xcolor6 = xrdb.color6 or "#79E6F3"
-theme.xcolor7 = xrdb.color7 or "#FDFDFD"
-theme.xcolor8 = xrdb.color8 or "#414458"
-theme.xcolor9 = xrdb.color9 or "#FF4971"
-theme.xcolor10 = xrdb.color10 or  "#18E3C8"
-theme.xcolor11 = xrdb.color11 or  "#FF8037"
-theme.xcolor12 = xrdb.color12 or  "#556FFF"
-theme.xcolor13 = xrdb.color13 or  "#B043D1"
-theme.xcolor14 = xrdb.color14 or  "#3FDCEE"
-theme.xcolor15 = xrdb.color15 or  "#BEBEC1"
+theme.xbackground = "#242e2f"
+theme.xforeground = "#FDFDFD"
+theme.xcolor0 = "#282A36"
+theme.xcolor1 = "#F37F97"
+theme.xcolor2 = "#5ADECD"
+theme.xcolor3 = "#F2A272"
+theme.xcolor4 = "#8897F4"
+theme.xcolor5 = "#C574DD"
+theme.xcolor6 = "#79E6F3"
+theme.xcolor7 = "#FDFDFD"
+theme.xcolor8 = "#414458"
+theme.xcolor9 = "#FF4971"
+theme.xcolor10 = "#18E3C8"
+theme.xcolor11 = "#FF8037"
+theme.xcolor12 = "#556FFF"
+theme.xcolor13 = "#B043D1"
+theme.xcolor14 = "#ff7723"
+theme.xcolor15 = "#BEBEC1"
 
 
 -- Set some colors that are used frequently as local variables
@@ -81,14 +81,16 @@ theme.fg_minimize   = theme.xcolor8
 --theme.fg_focus      = "#ffffff"
 --theme.fg_urgent     = "#ffffff"
 --theme.fg_minimize   = "#ffffff"
-
-theme.useless_gap   = dpi(3)
-theme.border_width  = dpi(1)
-theme.screen_margin = dpi(3)
+--theme.panel_height  = 36 -- panel height
+theme.useless_gap   = dpi(5)
+theme.border_width  = dpi(2)
+theme.screen_margin = dpi(8)
 theme.border_normal = "#000000"
 theme.border_focus  = "#535d6c"
 theme.border_marked = "#91231c"
 tasklist_bg_focus	= theme.xcolor8
+
+
 
 -- There are other variable sets
 -- overriding the default one when
@@ -113,7 +115,7 @@ theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
 )
 
 --Wibar
-theme.wibar_height = dpi(32)
+theme.wibar_height = dpi(25)
 --theme.wibar.fg = theme.xcolor7
 --theme.wibar.bg = theme.xcolor0 .. "00"
 

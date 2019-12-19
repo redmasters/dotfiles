@@ -467,6 +467,8 @@ clientkeys = gears.table.join(
         {description = "(un)maximize horizontally", group = "client"})
 )
 
+
+
 -- Bind all key numbers to tags.
 -- Be careful: we use keycodes to make it work on any keyboard layout.
 -- This should map on the top row of your keyboard, usually 1 to 9.
@@ -531,6 +533,10 @@ clientbuttons = gears.table.join(
     end)
 )
 
+
+--PrintScreen
+awful.key({ }, "Print", function () awful.spawn.spawn("deepin-screenshot") end,
+          {description = "PrintScreens", group = "screenshots"})
 -- Set keys
 root.keys(globalkeys)
 -- }}}
@@ -547,6 +553,7 @@ awful.rules.rules = {
                      keys = clientkeys,
                      buttons = clientbuttons,
                      screen = awful.screen.preferred,
+                     
                      placement = awful.placement.no_overlap+awful.placement.no_offscreen
      }
     },
@@ -584,7 +591,7 @@ awful.rules.rules = {
 
     -- Add titlebars to normal clients and dialogs
     { rule_any = {type = { "normal", "dialog" }
-      }, properties = { titlebars_enabled = true }
+      }, properties = { titlebars_enabled = false }
     },
 
     -- Set Firefox to always map on the tag named "2" on screen 1.
