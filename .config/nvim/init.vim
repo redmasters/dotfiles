@@ -1,9 +1,6 @@
-"Retirado daqui: https://medium.com/@luyo.lemp/acredito-que-muitos-de-voc%C3%AAs-j%C3%A1-tenham-ouvido-falar-sobre-o-vim-eu-particularmente-sempre-tive-e7bd58955a7f
-
 call plug#begin()
 "Seção do plugin
-
-Plug 'cseelus/vim-colors-lucid'
+Plug 'sainnhe/sonokai'
 Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -14,8 +11,17 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 "Seção de configuração
 
+" important!!
+set termguicolors
+
+" the configuration options should be placed before `colorscheme sonokai`
+let g:sonokai_style = 'andromeda'
+let g:sonokai_enable_italic = 1
+let g:sonokai_disable_italic_comment = 1
+
+
 "Tema Atual
-colorscheme lucid
+colorscheme sonokai
 
 "Atalhos
 let mapleader="\<space>"
