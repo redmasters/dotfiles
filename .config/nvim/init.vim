@@ -1,5 +1,6 @@
 call plug#begin()
 "Seção do plugin
+Plug 'jiangmiao/auto-pairs'
 Plug 'sainnhe/sonokai'
 Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
