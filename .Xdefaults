@@ -1,5 +1,3 @@
-Xresources
-
 !- Font Render
 Xft.dpi: 96
 Xft.antialiasing: false
@@ -8,6 +6,10 @@ Xft.hinting: true
 Xft.lcdfilter: lcddefalut
 URxvt*.cursorColor: #b30000
 
+URxvt*font: xft:FantasqueSansMono-Regular:pixelsize=18:antialias=true
+URxvt*boldFont: xft:FantasqueSansMono-Bold:pixelsize=18:antialias=true
+URxvt*italicFont: xft:FantasqueSansMono-Italic:pixelsize=18:antialias=true
+URxvt*letterSpace: -1
 
 URxvt*background:#222222
 URxvt*foreground:#e8e9ca
