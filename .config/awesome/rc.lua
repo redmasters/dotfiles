@@ -21,10 +21,8 @@ require("awful.hotkeys_popup.keys")
 
 rofi_script = [[
 bash -c "
-    rofi -modi drun, run -show drun -line-padding 4 \
-         -columns 4 -padding 20 -hide-scrollbar    \
-         -show-icons -icon-theme 'Papirus-Dark'    \
-         -lines 10 -width 31"
+rofi -modi drun, run -show drun -line-padding 4 -columns 4 -padding 20 -hide-scrollbar -show-icons -icon-theme 'Papirus-Dark' -lines 10 -width 31
+" 
 ]]
 
 
@@ -38,8 +36,7 @@ autorun = true
 autorunApps =
 {
    "xfce4-clipman",
-   "feh --bg-fill -z ~/Imagens/wall/*",
-   "setxkbmap br",
+   --"setxkbmap br",
    "volumeicon",
    --"program5",
 }
@@ -219,10 +216,10 @@ local function set_wallpaper(s)
         -- gears.wallpaper.maximized(wallpaper, s, true)
 
         -- Method 2: Set theme's wallpaper with feh
-        --awful.spawn.with_shell("feh --bg-fill " .. wallpaper)
+        awful.spawn.with_shell("feh --bg-fill --randomize ~/Imagens/wall/") 
 
         -- Method 3: Set last wallpaper with feh
-        awful.spawn.with_shell(os.getenv("HOME") .. "/.fehbg")
+        --awful.spawn.with_shell(os.getenv("HOME") .. "/.fehbg")
     end
 end
 

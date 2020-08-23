@@ -18,10 +18,10 @@ local awful = require("awful")
 local screen_width = awful.screen.focused().geometry.width
 local screen_height = awful.screen.focused().geometry.height
 
-theme.font = "Roboto Condensed Regular 10"
+theme.font = "Roboto Condensed Regular 9"
 --theme.tasklist_font = "Roboto 00"
 theme.titlebar_font = "Roboto 5"
-theme.taglist_font  = "Roboto Bold 6"
+theme.taglist_font  = "Roboto Bold 12"
 
 --Colors  {
 
@@ -115,7 +115,7 @@ theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
 )
 
 --Wibar
-theme.wibar_height = dpi(25)
+theme.wibar_height = dpi(18)
 --theme.wibar.fg = theme.xcolor7
 --theme.wibar.bg = theme.xcolor0 .. "00"
 
