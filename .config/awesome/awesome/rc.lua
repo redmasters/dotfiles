@@ -28,17 +28,12 @@ bash -c "
 ]]
 
 
-i3locker = [[
-bash -c "
-    i3lock-fancy"
-]]
-
 --Autorun programas
 autorun = true
 autorunApps =
 {
    "xfce4-clipman",
-   "feh --bg-fill -z ~/Imagens/wall/*",
+   "feh --bg-fill --randomize ~/Imagens/wall/*",
    "setxkbmap br",
    "volumeicon",
    --"program5",
@@ -81,8 +76,8 @@ end
 beautiful.init("/home/red/.config/awesome/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "terminator"
-editor = os.getenv("EDITOR") or "nvim"
+terminal = "xfce4-terminal"
+editor = os.getenv("EDITOR") or "subl"
 editor_cmd = terminal .. " -e " .. editor
 
 -- Default modkey.
@@ -156,12 +151,6 @@ mytextclock:connect_signal("button::press",
     function(_, _, _, button)
         if button == 1 then cw.toggle() end
     end)
-
-
---battery widget
-local battery_widget = require("awesome-wm-widgets.battery-widget.battery")
-
-
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -314,9 +303,6 @@ awful.screen.connect_for_each_screen(function(s)
             wibox.widget.systray(),
             mytextclock,
             s.mylayoutbox,
-            layout = wibox.layout.fixed.horizontal,
-		battery_widget(),
-
         },
       }
 --}
@@ -402,7 +388,7 @@ globalkeys = gears.table.join(
               {description = "select next", group = "layout"}),
     awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(-1)                end,
               {description = "select previous", group = "layout"}),
-    awful.key({ modkey  }, "l", function() awful.util.spawn(i3locker) end),
+
     awful.key({ modkey, "Control" }, "n",
               function ()
                   local c = awful.client.restore()
@@ -444,7 +430,7 @@ clientkeys = gears.table.join(
             c:raise()
         end,
         {description = "toggle fullscreen", group = "client"}),
-    awful.key({ modkey, }, "q",      function (c) c:kill()                         end,
+    awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end,
               {description = "close", group = "client"}),
     awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ,
               {description = "toggle floating", group = "client"}),
