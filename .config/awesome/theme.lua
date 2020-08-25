@@ -1,5 +1,5 @@
 ---------------------------
--- Default awesome theme --
+-- Deefault awesome theme --
 ---------------------------
 
 local theme_assets = require("beautiful.theme_assets")
