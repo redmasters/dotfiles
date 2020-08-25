@@ -20,17 +20,21 @@ require("awful.hotkeys_popup.keys")
 
 
 rofi_script = [[
-bash -c "
+zsh -c "
 rofi -modi drun, run -show drun -line-padding 4 -columns 4 -padding 20 -hide-scrollbar -show-icons -icon-theme 'Papirus-Dark' -lines 10 -width 31
 " 
 ]]
 
 
 i3locker = [[
-bash -c "
+zsh -c "
     i3lock-fancy"
 ]]
 
+deepin_screenshot = [[
+zsh -c "
+    deepin-screenshot"
+]]
 --Autorun programas
 autorun = true
 autorunApps =
@@ -39,6 +43,7 @@ autorunApps =
    --"setxkbmap br",
    "volumeicon",
    --"program5",
+   "blueman-tray",
 }
 if autorun then
    for app = 1, #autorunApps do
@@ -95,7 +100,7 @@ awful.layout.layouts = {
     awful.layout.suit.floating,
     awful.layout.suit.max,
     awful.layout.suit.max.fullscreen,
-    --awful.layout.suit.tile,
+    awful.layout.suit.tile,
     --awful.layout.suit.tile.left,
     --awful.layout.suit.tile.bottom,
     --awful.layout.suit.tile.top,
@@ -231,7 +236,7 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "", "", "", "", "", "", "", "", "" }, s, awful.layout.layouts[1])
+    awful.tag({ "r", "e", "d", "m", "a", "s", "t", "e", "r"  }, s, awful.layout.layouts[1])
 
 
     -- Create a promptbox for each screen
@@ -546,7 +551,7 @@ clientbuttons = gears.table.join(
 
 
 --PrintScreen
-awful.key({ }, "Print", function () awful.spawn.spawn("deepin-screenshot") end,
+awful.key({}, "Print", function () awful.spawn.spawn("deepin_screenshot") end,
           {description = "PrintScreens", group = "screenshots"})
 -- Set keys
 root.keys(globalkeys)
