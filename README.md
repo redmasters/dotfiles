@@ -1,7 +1,6 @@
 # dotfiles
 .i3
 .awesomewm
-.urxvt
 .sddm
 ~/Imagens/wall
 .Thunar
