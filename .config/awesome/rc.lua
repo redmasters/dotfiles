@@ -95,7 +95,7 @@ awful.layout.layouts = {
     awful.layout.suit.floating,
     awful.layout.suit.max,
     awful.layout.suit.max.fullscreen,
-    --awful.layout.suit.tile,
+    awful.layout.suit.tile,
     --awful.layout.suit.tile.left,
     --awful.layout.suit.tile.bottom,
     --awful.layout.suit.tile.top,
@@ -231,7 +231,7 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "", "", "", "", "", "", "", "", "" }, s, awful.layout.layouts[1])
+    awful.tag({ "r", "e", "d", "m", "a", "s", "t", "e", "r"  }, s, awful.layout.layouts[1])
 
 
     -- Create a promptbox for each screen

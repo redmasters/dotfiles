@@ -42,7 +42,7 @@ theme.xcolor10 = "#18E3C8"
 theme.xcolor11 = "#FF8037"
 theme.xcolor12 = "#556FFF"
 theme.xcolor13 = "#B043D1"
-theme.xcolor14 = "#ff7723"
+theme.xcolor14 = "#D12A63"
 theme.xcolor15 = "#BEBEC1"
 
 
@@ -83,7 +83,7 @@ theme.fg_minimize   = theme.xcolor8
 --theme.fg_minimize   = "#ffffff"
 --theme.panel_height  = 36 -- panel height
 theme.useless_gap   = dpi(5)
-theme.border_width  = dpi(2)
+theme.border_width  = dpi(0)
 theme.screen_margin = dpi(8)
 theme.border_normal = "#000000"
 theme.border_focus  = "#535d6c"
