@@ -2,16 +2,25 @@
 .i3
 .awesomewm
 .urxvt
-.lightdm-gtk-greeter
-~/Pictures/wall
+.sddm
+~/Imagens/wall
 .Thunar
 .Thunar-volman
 .lxappearance
 .lxtask
-.firefox-developer-edition
-.xfce4-terminal
+.firefox
+.terminator
 .xfce4-clipman
 .xfce4-settings-manager
-.vim
-.sublime-text
-.
+.nvim
+.rofi
+.blueman-tray
+
+### Fonts: ###
+Awesome Fonts
+Roboto Condensed Regular
+Roboto Bold
+Fantasque Mono Regular
+
+
+![](https://github.com/redmasters/dotfiles/blob/master/awesomewm.png)
