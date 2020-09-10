@@ -1,7 +1,7 @@
 call plug#begin()
 "Seção do plugin
 Plug 'jiangmiao/auto-pairs'
-Plug 'sainnhe/sonokai'
+Plug 'tomasr/molokai'
 Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -9,6 +9,8 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'dense-analysis/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'tpope/vim-fugitive'
+Plug 'easymotion/vim-easymotion'
 call plug#end()
 "Seção de configuração
 
@@ -22,22 +24,29 @@ let g:sonokai_disable_italic_comment = 1
 
 
 "Tema Atual
-colorscheme sonokai
+colorscheme molokai
+let g:molokai_original = 1
+let g:rehash256 = 1
 
 "Atalhos
 let mapleader="\<space>"
 nnoremap <leader>sv :source ~/.config/nvim/init.vim<CR>
 
-map <C-\> :NERDTreeToggle<CR>
-noremap <C-p> :Files <CR>
+noremap <C-p> :FZF <CR>
+let g:fzf_action = {
+    \ 'ctrl-t': 'tab split',
+    \ 'ctrl-s': 'split',
+    \ 'ctrl-v': 'vsplit'
+    \}
 
 noremap <C-s> :w <CR>
-noremap <C-f> :Ag <CR> 
+"noremap <C-f> :Ag <CR> 
 
 "Configs Basicas
 set encoding=UTF-8
 set ruler
 set ttyfast
+set cursorline
 
 "TABS
 set tabstop=4
@@ -58,6 +67,7 @@ let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 let NERDTreeIgnore = []
 let NERDTreeStatusline = ''
+map <C-b> :NERDTreeToggle<CR>
 
 "nerdtree-git-plugin
 let g:NERDTreeIndicatorMapCustom = {
@@ -72,6 +82,10 @@ let g:NERDTreeIndicatorMapCustom = {
     \ 'Ignored'   : '☒',
     \ "Unknown"   : "?"
     \ }
+
+" Automaticaly close nvim if NERDTree is only thing left open
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" Toggle
 
 "ale
 let b:ale_fixers = ['prettier', 'eslint']
@@ -121,9 +135,21 @@ function! OpenTerminal()
   resize 10
 endfunction
 
+"nnoremap <c-j> :call OpenTerminal()<CR>
+set splitright
+set splitbelow
+
+tnoremap <Esc><C-\><C-j>
+au BufEnter * if &buftype == 'terminal' | :startinsert | endif
+" open terminal on ctrl+n
+function! OpenTerminal()
+  split term://zsh
+  resize 10
+endfunction
 nnoremap <c-j> :call OpenTerminal()<CR>
 
 " use alt+hjkl para mover entre split/vsplit paineis
+
 
 tnoremap <A-h> <C-\><C-n><C-w>h
 tnoremap <A-j> <C-\><C-n><C-w>j

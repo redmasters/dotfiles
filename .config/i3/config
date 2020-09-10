@@ -141,7 +141,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec rofi -show run -hide-scrollbar -lines 3 -eh 1 -width 40 -location 8 -xoffset 15 -yoffset 279 -padding 30 -disable-history -font "undefined 15"
+bindsym $mod+d exec rofi -show drun -hide-scrollbar -lines 10 -eh 1 -width 40 -location 0 -xoffset 15 -yoffset -200 -padding 30 -show-icons -disable-history -font "undefined 15"
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -201,7 +201,7 @@ bindsym $mod+a focus parent
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1:"
 set $ws2 "2:"
-set $ws3 "3:"
+set $ws3 "3:"
 set $ws4 "4"
 set $ws5 "5"
 set $ws6 "6"
@@ -243,12 +243,16 @@ for_window [class="krita"] floating enable
 
 for_window [window_role="pop-up"] floating enable,move absolute center
 
+
 #Aplicativos pré-definidos
 # #assign [class="Gnome-terminal"] $ws1
 assign [class="Firefox"] $ws1
 assign [class="sublime-text|sublime_text|Sublime_text|subl|Subl|subl3|Subl3"] $ws2
-assign [class="Steam"] $ws3
+assign [class="telegram-desktop"] $ws3
+assign [class="whatsapp-nativefier-d40211"] $ws3
 assign [class="Spotify|spotify"] $ws10
+assign [class="Terminator|terminator"] $ws2
+
 #fix for spotify not moving to workspace $ws10
 #for_window [class="Spotify"] move to workspace $ws10
 
@@ -262,7 +266,7 @@ bindsym $mod+Shift+r restart
 ########################################################################
 
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Você pressionou o atalho de saída. Quer realmente sair do i3? Isto irá finalizar sua sessão desktop X.' -B 'Sim, sair do i3' 'i3-msg exit'"
 
 
 #Press $mod (super) and X to exit - check toolbar for next choices
@@ -341,19 +345,37 @@ bindsym $mod+r mode "resize"
 
 ######################### BOOT UP ############################################
 #Startup
-exec --no-startup-id feh --bg-fill -randomize ~/Imagens/wall/*
+exec_always feh --bg-fill --randomize ~/Imagens/wall/*
 
 #bindsym mod1+F3 exec --no-startup-id xfce4-appfinder
+
+exec --no-startup-id xfce4-clipman
+
 
 #Polybar
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 
-exec setxkbmap br
+#exec setxkbmap br
 
 
 ####PrintScrenn###
 bindsym --release Print exec --no-startup-id deepin-screenshot
+#Multiplos Monitores
+#exec_always --no-startup-id ~/.screenlayout/multihead.sh
 
+exec xrandr --output VGA1 --mode 1920x1080 --pos 1366x0 --rotate normal
+
+#Telegram
+exec --no-startup-id telegram-desktop
+#BetterLockScreen
+# set desktop background with custom effect
+#bindsym $mod+. exec --no-startup-id betterlockscreen --lock blur
+
+#Terminator
+exec --no-startup-id Terminator
+
+# Alternative (set last used background)
+#exec --no-startup-id source ~/.fehbg
 
 ############################ BARRA ###########################################
 # Start i3bar to display a workspace bar (plus the system information i3status

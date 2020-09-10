@@ -4,93 +4,32 @@
 
 local theme_assets = require("beautiful.theme_assets")
 local xresources = require("beautiful.xresources")
+local rnotification = require("ruled.notification")
 local dpi = xresources.apply_dpi
-local xrdb = xresources.get_current_theme()
+
 local gfs = require("gears.filesystem")
 local themes_path = gfs.get_themes_dir()
 
 local theme = {}
-local theme_name = "red"
 
+theme.font          = "Roboto Regular 8"
 
--- This is used to make it easier to align the panels in specific monitor positions
-local awful = require("awful")
-local screen_width = awful.screen.focused().geometry.width
-local screen_height = awful.screen.focused().geometry.height
+theme.bg_normal     = "#222222"
+theme.bg_focus      = "#535d6c"
+theme.bg_urgent     = "#ff0000"
+theme.bg_minimize   = "#444444"
+theme.bg_systray    = theme.bg_normal
 
-theme.font = "Roboto Condensed Regular 9"
---theme.tasklist_font = "Roboto 00"
-theme.titlebar_font = "Roboto 5"
-theme.taglist_font  = "Roboto Bold 12"
+theme.fg_normal     = "#000000"
+theme.fg_focus      = "#ffffff"
+theme.fg_urgent     = "#ffffff"
+theme.fg_minimize   = "#ffffff"
 
---Colors  {
-
--- Get colors from .Xresources and set fallback colors
-theme.xbackground = "#242e2f80"
-theme.xforeground = "#FDFDFD"
-theme.xcolor0 = "#282A36"
-theme.xcolor1 = "#F37F97"
-theme.xcolor2 = "#5ADECD"
-theme.xcolor3 = "#F2A272"
-theme.xcolor4 = "#8897F4"
-theme.xcolor5 = "#C574DD"
-theme.xcolor6 = "#79E6F3"
-theme.xcolor7 = "#FDFDFD"
-theme.xcolor8 = "#414458"
-theme.xcolor9 = "#FF4971"
-theme.xcolor10 = "#18E3C8"
-theme.xcolor11 = "#FF8037"
-theme.xcolor12 = "#556FFF"
-theme.xcolor13 = "#B043D1"
-theme.xcolor14 = "#D12A63"
-theme.xcolor15 = "#BEBEC1"
-
-
--- Set some colors that are used frequently as local variables
-local accent_color = theme.xcolor14
-local focused_color = theme.xcolor14
-local unfocused_color = theme.xcolor7
-local urgent_color = theme.xcolor9
-
-
--- This is how to get other .Xresources values (beyond colors 0-15, or custom variables)
--- local cool_color = awesome.xrdb_get_value("", "color16")
-
-theme.bg_dark       = theme.xbackground
-theme.bg_normal     = theme.xbackground
---theme.bg_focus      = theme.xbackground
-theme.bg_urgent     = theme.xbackground
-theme.bg_minimize   = theme.xbackground
-theme.bg_systray    = theme.xbackground
-
-theme.fg_normal     = theme.xcolor7
-theme.fg_focus      = focused_color
-theme.fg_urgent     = urgent_color
-theme.fg_minimize   = theme.xcolor8
-
---}
-
-
---theme.bg_normal     = "#27272f"
---theme.bg_focus      = "#444444"
---theme.bg_urgent     = "#1e1e1e"
---theme.bg_minimize   = "#373740"
---theme.bg_systray    = theme.bg_normal
-
---theme.fg_normal     = "#aaaaaa"
---theme.fg_focus      = "#ffffff"
---theme.fg_urgent     = "#ffffff"
---theme.fg_minimize   = "#ffffff"
---theme.panel_height  = 36 -- panel height
-theme.useless_gap   = dpi(5)
-theme.border_width  = dpi(0)
-theme.screen_margin = dpi(8)
-theme.border_normal = "#000000"
-theme.border_focus  = "#535d6c"
-theme.border_marked = "#91231c"
-tasklist_bg_focus	= theme.xcolor8
-
-
+theme.useless_gap         = dpi(0)
+theme.border_width        = dpi(1)
+theme.border_color_normal = "#000000"
+theme.border_color_active = "#535d6c"
+theme.border_color_marked = "#91231c"
 
 -- There are other variable sets
 -- overriding the default one when
@@ -114,11 +53,6 @@ theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
     taglist_square_size, theme.fg_normal
 )
 
---Wibar
-theme.wibar_height = dpi(18)
---theme.wibar.fg = theme.xcolor7
---theme.wibar.bg = theme.xcolor0 .. "00"
-
 -- Variables set for theming notifications:
 -- notification_font
 -- notification_[bg|fg]
@@ -129,7 +63,7 @@ theme.wibar_height = dpi(18)
 -- menu_[bg|fg]_[normal|focus]
 -- menu_[border_color|border_width]
 theme.menu_submenu_icon = themes_path.."default/submenu.png"
-theme.menu_height = dpi(45)
+theme.menu_height = dpi(15)
 theme.menu_width  = dpi(100)
 
 -- You can add as many variables as
@@ -138,7 +72,7 @@ theme.menu_width  = dpi(100)
 --theme.bg_widget = "#cc0000"
 
 -- Define the image to load
-theme.titlebar_close_button_normal = themes_path.."red/close_normal.png"
+theme.titlebar_close_button_normal = themes_path.."default/titlebar/close_normal.png"
 theme.titlebar_close_button_focus  = themes_path.."default/titlebar/close_focus.png"
 
 theme.titlebar_minimize_button_normal = themes_path.."default/titlebar/minimize_normal.png"
@@ -164,8 +98,7 @@ theme.titlebar_maximized_button_focus_inactive  = themes_path.."default/titlebar
 theme.titlebar_maximized_button_normal_active = themes_path.."default/titlebar/maximized_normal_active.png"
 theme.titlebar_maximized_button_focus_active  = themes_path.."default/titlebar/maximized_focus_active.png"
 
-theme.wallpaper = themes_path.."red/background.png"
-
+theme.wallpaper = themes_path.."default/background.png"
 
 -- You can use your own layout icons like this:
 theme.layout_fairh = themes_path.."default/layouts/fairhw.png"
@@ -193,6 +126,14 @@ theme.awesome_icon = theme_assets.awesome_icon(
 -- Define the icon theme for application icons. If not set then the icons
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.
 theme.icon_theme = nil
+
+-- Set different colors for urgent notifications.
+rnotification.connect_signal('request::rules', function()
+    rnotification.append_rule {
+        rule       = { urgency = 'critical' },
+        properties = { bg = '#ff0000', fg = '#ffffff' }
+    }
+end)
 
 return theme
 
