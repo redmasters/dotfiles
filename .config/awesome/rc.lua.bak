@@ -294,9 +294,8 @@ clientbuttons = gears.table.join(
 
 
 --PrintScreen
-awful.key({"Print"}, "Print", function () awful.spawn.spawn("deepin_screenshot") end,
+awful.key({}, "Print", function () awful.spawn.spawn("deepin_screenshot") end,
           {description = "PrintScreens", group = "screenshots"})
-
 -- Set keys
 root.keys(globalkeys)
 -- }}}
@@ -340,7 +339,6 @@ local autorunApps =
    --"program5",
    "blueman-tray",
    "compton",
-   "nm-applet",
 }
 if autorun then
    for app = 1, #autorunApps do

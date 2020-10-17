@@ -7,6 +7,7 @@
 .Thunar-volman
 .lxappearance
 .lxtask
+.i3lock-fancy
 .firefox
 .terminator
 .xfce4-clipman
