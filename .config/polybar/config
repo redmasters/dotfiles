@@ -26,7 +26,8 @@ secondary = #e60053
 alert = #bd2c40
 
 [bar/bar]
-;monitor = ${env:MONITOR:HDMI-1}
+monitor = ${env:MONITOR:}
+
 width = 100%
 height = 24
 fixed-center = false
@@ -51,13 +52,15 @@ module-margin-left = 1
 module-margin-right = 1
 
 font-0 = "undefined:pixelsize=8;0"
-font-1 = "Font Awesome 5 Free:style=Solid:size=5:antialias=true;0"
+;font-0 = "Ubuntu Nerd Font:pixelsize=10:style=Medium;5"
+font-1 = "Font Awesome 5 Free:style=Solid:size=8:antialias=true;0"
+;font-1 = "Material Design Icons Desktop:pixelsize=20;5"
+
 font-2 = "Font Awesome 5 Brands:style=Regular:pixelsize=10;1"
 
-modules-left = i3 player_previous player_stop player_title player_playpause player_next weather
+modules-left = i3 player_previous player_stop player_title player_playpause player_next 
 modules-center =
-modules-right = filesystem xbacklight pulseaudio cpu temperature memory battery date
-
+modules-right = filesystem xbacklight pulseaudio wlan eth cpu temperature memory battery date 
 tray-position = right
 tray-padding = 2
 ;tray-background = #0063ff
@@ -249,7 +252,7 @@ card = intel_backlight
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = " "
+format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #f90000
 label = %percentage:2%%
@@ -257,7 +260,7 @@ label = %percentage:2%%
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = " "
+format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #4bffdc
 label = %percentage_used%%
@@ -268,29 +271,30 @@ interface = wlp3s0
 interval = 3.0
 
 format-connected = <ramp-signal> <label-connected>
+;format-prefix = ":
 format-connected-underline = #9f78e1
 label-connected = %essid%
 
-format-disconnected =
+format-disconnected = ""
 ;format-disconnected = <label-disconnected>
 ;format-disconnected-underline = ${self.format-connected-underline}
 ;label-disconnected = %ifname% disconnected
 ;label-disconnected-foreground = ${colors.foreground-alt}
 
-ramp-signal-0 = 
-ramp-signal-1 = 
-ramp-signal-2 = 
-ramp-signal-3 = 
-ramp-signal-4 = 
+ramp-signal-0 = ""
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+ramp-signal-4 = 
 ramp-signal-foreground = ${colors.foreground-alt}
 
 [module/eth]
 type = internal/network
-interface = vboxnet0
+interface = enp0s25
 interval = 3.0
 
 format-connected-underline = #55aa55
-format-connected-prefix = " "
+format-connected-prefix = " "
 format-connected-prefix-foreground = ${colors.foreground-alt}
 label-connected = %local_ip%
 
@@ -310,7 +314,7 @@ date-alt = " %d-%m-%Y"
 time = %H:%M
 time-alt = %H:%M:%S
 
-format-prefix = 
+format-prefix =  
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #0a6cf5
 
@@ -373,9 +377,9 @@ bar-volume-empty-foreground = ${colors.foreground-alt}
 
 [module/battery]
 type = internal/battery
-battery = BAT1
+battery = BAT0
 adapter = ACAD
-full-at = 98
+full-at = 99
 
 format-charging = <animation-charging> <label-charging>
 format-charging-underline = #ffb52a
@@ -383,7 +387,7 @@ format-charging-underline = #ffb52a
 format-discharging = <animation-discharging> <label-discharging>
 format-discharging-underline = ${self.format-charging-underline}
 
-format-full-prefix = " "
+format-full-prefix = ""
 format-full-prefix-foreground = ${colors.foreground-alt}
 format-full-underline = ${self.format-charging-underline}
 
