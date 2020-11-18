@@ -14,6 +14,10 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
+--Calendar
+local calendar_widget = require("calendar-widget.calendar")
+--Testes
+local tests = require("lab.testes")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
@@ -89,8 +93,8 @@ modkey = "Mod4"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
-    awful.layout.suit.spiral,
     awful.layout.suit.floating,
+    awful.layout.suit.spiral,
     awful.layout.suit.max,
     awful.layout.suit.max.fullscreen,
     --awful.layout.suit.tile,
@@ -138,7 +142,7 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 -- Create a textclock widget
 mytextclock = wibox.widget.textclock()
 
-local calendar_widget = require("awesome-wm-widgets.calendar-widget.calendar")
+
 
 -- default
 local cw = calendar_widget()
@@ -211,7 +215,7 @@ local function set_wallpaper(s)
         --awful.spawn.with_shell("feh --bg-fill " .. wallpaper)
 
         -- Method 3: Set last wallpaper with feh
-        awful.spawn.with_shell(os.getenv("HOME") .. "/.fehbg")
+        --awful.spawn.with_shell(os.getenv("HOME") .. "/.fehbg")
     end
 end
 
@@ -221,6 +225,8 @@ screen.connect_signal("property::geometry", set_wallpaper)
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
     set_wallpaper(s)
+    s.systray = wibox.widget.systray()
+    s.systray.visible = false
 
     -- Each screen has its own tag table.
     awful.tag({ "", "", "", "", "", "", "", "", "" }, s, awful.layout.layouts[1])
@@ -279,7 +285,6 @@ awful.screen.connect_for_each_screen(function(s)
     }
 --Testes {
 
-  
     s.mytext = wibox.widget.textbox()
     s.mytext.text = "Hello World!"
     s.mybar = awful.wibar({position = "top", screen = s,})
@@ -300,7 +305,7 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             mykeyboardlayout,
-            wibox.widget.systray(),
+            s.systray,
             mytextclock,
             s.mylayoutbox,
         },
@@ -328,6 +333,15 @@ globalkeys = gears.table.join(
               {description = "view next", group = "tag"}),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore,
               {description = "go back", group = "tag"}),
+
+    -- systray
+    awful.key({ modkey }, "=",
+      function ()
+    awful.screen.focused().systray.visible = not awful.screen.focused().systray.visible
+    end,
+    {description = "Toggle systray visibility", group = "custom"}
+    ),
+
 
     awful.key({ modkey,           }, "j",
         function ()
@@ -430,7 +444,7 @@ clientkeys = gears.table.join(
             c:raise()
         end,
         {description = "toggle fullscreen", group = "client"}),
-    awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end,
+    awful.key({ modkey, }, "q",      function (c) c:kill()                         end,
               {description = "close", group = "client"}),
     awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ,
               {description = "toggle floating", group = "client"}),

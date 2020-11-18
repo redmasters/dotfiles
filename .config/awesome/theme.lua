@@ -26,7 +26,7 @@ theme.taglist_font  = "Roboto Bold 6"
 --Colors  {
 
 -- Get colors from .Xresources and set fallback colors
-theme.xbackground = "#242e2f"
+theme.xbackground = "#12121F0"
 theme.xforeground = "#FDFDFD"
 theme.xcolor0 = "#282A36"
 theme.xcolor1 = "#F37F97"
